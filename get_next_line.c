@@ -6,7 +6,7 @@
 /*   By: averkenn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/22 18:00:46 by averkenn          #+#    #+#             */
-/*   Updated: 2015/02/07 05:03:04 by averkenn         ###   ########.fr       */
+/*   Updated: 2015/02/07 05:28:34 by averkenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_cpy_line(char *str)
 
 	i = 0;
 	line = ft_strnew(ft_strlen(str));
-	while(str[i] && (str[i] != '\n'))
+	while (str[i] && (str[i] != '\n'))
 	{
 		line[i] = str[i];
 		i++;
@@ -31,9 +31,9 @@ char	*ft_cpy_line(char *str)
 
 char	*ft_next(char *str)
 {
-	int i;
-	int j;
-	char *temp;
+	int		i;
+	int		j;
+	char	*temp;
 
 	i = 0;
 	j = 0;
@@ -41,13 +41,13 @@ char	*ft_next(char *str)
 	while (str[i] != '\n' && str[i])
 		i++;
 	i++;
-	while(str[i])
+	while (str[i])
 		temp[j++] = str[i++];
 	temp[j] = '\0';
 	return (temp);
 }
 
-int	get_next_line(int const fd, char **line)
+int		get_next_line(int const fd, char **line)
 {
 	static char	*temp = NULL;
 	char		*buffer;
