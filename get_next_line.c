@@ -6,7 +6,7 @@
 /*   By: averkenn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/22 18:00:46 by averkenn          #+#    #+#             */
-/*   Updated: 2015/02/07 05:28:34 by averkenn         ###   ########.fr       */
+/*   Updated: 2015/02/07 21:28:00 by averkenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,21 +49,21 @@ char	*ft_next(char *str)
 
 int		get_next_line(int const fd, char **line)
 {
-	static char	*temp = NULL;
+	static char	*temp[MAX_FILE];
 	char		*buffer;
 	int			ret;
 
 	if (fd < 0 || !line || !(buffer = ft_strnew(BUF_SIZE + 1)))
 		return (-1);
-	while (!(ft_strchr(temp, '\n')) && (ret = read(fd, buffer, BUF_SIZE)))
+	while (!(ft_strchr(temp[fd], '\n')) && (ret = read(fd, buffer, BUF_SIZE)))
 	{
 		if (ret == -1)
 			return (-1);
 		buffer[ret] = '\0';
-		temp = ft_strjoin(temp, buffer);
+		temp[fd] = ft_strjoin(temp[fd], buffer);
 	}
-	*line = ft_cpy_line(temp);
-	temp = ft_next(temp);
+	*line = ft_cpy_line(temp[fd]);
+	temp[fd] = ft_next(temp[fd]);
 	if (ret)
 		return (1);
 	return (0);
